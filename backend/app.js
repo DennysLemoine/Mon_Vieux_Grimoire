@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const Book = require('./models/Book');
+
 mongoose.connect('mongodb+srv://DennysLemoine1:7VTEIl0gwWLIYhLR@clustertest.3rwe3de.mongodb.net/?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
@@ -10,7 +12,6 @@ mongoose.connect('mongodb+srv://DennysLemoine1:7VTEIl0gwWLIYhLR@clustertest.3rwe
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const app = express();
-
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
