@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const bookRoutes = require('./routes/book');
 const userRoutes = require('./routes/user');
@@ -14,6 +15,8 @@ mongoose.connect('mongodb+srv://DennysLemoine1:7VTEIl0gwWLIYhLR@clustertest.3rwe
 
 const app = express();
 
+app.use(express.json());
+
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -23,5 +26,6 @@ app.use((req, res, next) => {
 
 app.use('/api/books', bookRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
