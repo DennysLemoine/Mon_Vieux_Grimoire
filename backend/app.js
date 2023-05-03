@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const Book = require('./models/Book');
+const bookRoutes = require('./routes/book');
 
 mongoose.connect('mongodb+srv://DennysLemoine1:7VTEIl0gwWLIYhLR@clustertest.3rwe3de.mongodb.net/?retryWrites=true&w=majority',
     {
@@ -19,5 +19,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
+
+app.use('/api/books', bookRoutes);
 
 module.exports = app;
