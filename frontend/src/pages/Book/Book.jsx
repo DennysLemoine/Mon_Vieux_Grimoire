@@ -67,6 +67,8 @@ function Book() {
       <div className={styles.Book}>
         <div className={styles.BookImage} style={{ backgroundImage: `url(${book.imageUrl})` }} />
         <div className={styles.BookContent}>
+          {/* {console.log(book)} */}
+          {/* {console.log(connectedUser.userId)} */}
           {book?.userId === connectedUser?.userId ? (
             <div className={styles.Owner}>
               <p>Vous avez publié cet ouvrage, vous pouvez le :</p>
