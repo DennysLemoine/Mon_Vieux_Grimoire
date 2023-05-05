@@ -11,14 +11,10 @@ exports.getOneBook = (req, res, next) => {
     Book.findOne({_id: req.params.id})
         .then(book => res.status(200).json(book))
         .catch(error => res.status(404).json({error}));
-    console.log({_id: req.params.id})
-
 }
 
 exports.createBook = (req, res, next) => {
     const bookObject = JSON.parse(req.body.book);
-    console.log(bookObject);
-    console.log(req.body);
     delete bookObject._id;
     delete bookObject.userId;
     const book = new Book({
@@ -58,7 +54,7 @@ exports.deleteBook = (req, res, next) => {
     Book.findOne({ _id: req.params.id})
         .then(book => {
             if (book.userId != req.auth.userId) {
-                res.status(403).json({message: 'Not authorized'});
+                res.status(403).json({message: 'Non-autorisé !'});
             } else {
                 const filename = book.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
@@ -72,3 +68,4 @@ exports.deleteBook = (req, res, next) => {
             res.status(500).json({ error });
         });
 };
+
