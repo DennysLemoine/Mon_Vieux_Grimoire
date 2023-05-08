@@ -1,9 +1,20 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const mongoSanitize = require('express-mongo-sanitize');
 
 const bookRoutes = require('./routes/book');
 const userRoutes = require('./routes/user');
+
+const rateLimit = require("express-rate-limit");
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100 // limit each IP to 100 requests per windowMs
+});
+const port = process.env.PORT || 3000;
+
 
 mongoose.connect('mongodb+srv://DennysLemoine1:7VTEIl0gwWLIYhLR@clustertest.3rwe3de.mongodb.net/?retryWrites=true&w=majority',
     {
@@ -24,6 +35,8 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(limiter);
+app.use(mongoSanitize());
 app.use('/api/books', bookRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
