@@ -137,7 +137,7 @@ exports.updateBookRating = (req, res, next) => {
 };
 
 // Avoir les 3 livres les mieux notés de la BDD :
-exports.getThreeBestRatings = (req, res, next) => {
+exports.getBestRatedBooks = (req, res, next) => {
 
     // Récupérer les trois meilleurs livres selon leur note moyenne
     Book.find()
