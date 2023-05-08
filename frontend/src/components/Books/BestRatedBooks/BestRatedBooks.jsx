@@ -7,15 +7,17 @@ function BestRatedBooks() {
   const { bestRatedBooks } = useBestRatedBooks();
 
   const bestRatedBooksContent = bestRatedBooks.length > 0 ? (
-    bestRatedBooks.map((elt) => <BookItem key={`book-${elt.id}`} book={elt} size={3} />)
-  ) : <h3>Aucune recommendation</h3>;
+    bestRatedBooks.map((book) => (
+      <BookItem key={book.id} book={book} size={3} />
+    ))
+  ) : (
+    <h3>Aucune recommandation</h3>
+  );
 
   return (
     <section className={`content-container ${styles.BestRatedBooks}`}>
       <h2>Les mieux notés</h2>
-      <div className={styles.List}>
-        {bestRatedBooksContent}
-      </div>
+      <div className={styles.List}>{bestRatedBooksContent}</div>
     </section>
   );
 }
