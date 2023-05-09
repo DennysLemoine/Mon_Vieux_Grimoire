@@ -21,20 +21,22 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage }).single('image');
 
-// Middleware pour traiter l'image avant de l'enregistrer
+// Middleware pour traiter l'image avant de l'enregistrer :
 const processImage = (req, res, next) => {
     if (!req.file) {
         // Aucun fichier n'a été téléchargé
         return next();
     }
 
-    // Ouvrir l'image téléchargée avec sharp
+    // Ouvrir l'image téléchargée avec sharp :
     sharp(req.file.path)
-        // Redimensionner l'image à 500 pixels de large
+        // Redimensionner l'image à 500 pixels de large :
         .resize({ width: 500 })
-        // Compresser l'image avec une qualité de 80%
+
+        // Compresser l'image avec une qualité de 80% :
         .jpeg({ quality: 80 })
-        // Enregistrer l'image traitée dans un fichier
+
+        // Enregistrer l'image traitée dans un fichier :
         .toFile(req.file.path + '.optimized', (err) => {
             if (err) {
                 return next(err);
