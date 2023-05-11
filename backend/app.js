@@ -16,7 +16,7 @@ const limiter = rateLimit({
 const port = process.env.PORT || 3000;
 
 
-mongoose.connect('mongodb+srv://DennysLemoine1:7VTEIl0gwWLIYhLR@clustertest.3rwe3de.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://' + process.env.DB_LOGIN + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_CLUSTER + '/?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true

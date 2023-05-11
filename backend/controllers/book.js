@@ -17,6 +17,7 @@ exports.getOneBook = (req, res, next) => {
 
 // Création d'un livre :
 exports.createBook = (req, res, next) => {
+
     const bookObject = JSON.parse(req.body.book);
     delete bookObject._id;
     delete bookObject.userId;
