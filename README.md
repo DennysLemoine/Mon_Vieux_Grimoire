@@ -6,6 +6,6 @@ Je suis développeur back-end en freelance depuis un an dans le région de Lille
 # Installation 
 Pour installer l'application, suivez ces étapes : 
 1. Clonez le dépot Github : `git clone https://github.com/DennysLemoine/Mon_Vieux_Grimoire.git`
-2. Installez les dépendances : `npm install`
+2. Installez les dépendances : `npm install` dans le frontend et ensuite le backend
 3. cd frontend -> npm start 
 4. cd backend -> nodemon server
